@@ -6,4 +6,18 @@ def index(request):
 
 def submit(request):
     q = request.GET['query']
-    return HttpResponse(eval(q))
+    try:
+        ans = eval(q)
+        d = {
+            'q': q,
+            'ans': ans,
+            'error': False,
+            'result': True
+        }
+        return render(request,'index.html',context=d)
+    except:
+        d={
+            'error': True,
+            'result': False
+        }
+        return render(request,'index.html',context=d)
