@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'calculator'
+    'calculator',
+    'rootapp',
+    'votingapp'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'project1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates/calculator')],
+        'DIRS': [os.path.join(BASE_DIR,'templates/voting')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
