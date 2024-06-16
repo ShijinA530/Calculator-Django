@@ -30,6 +30,10 @@
         <li class="nav-item">
           <a class="nav-link" href="#instructions">Insturctions</a>
         </li>
+        <li class="nav-item">
+          <a href="#result" class="nav-link">Result</a>
+
+        </li>
       </ul>
     </div>
   </nav>
@@ -37,6 +41,10 @@
 
   <div class="container-fluid" style="margin-bottom: 30rem;">
     {{cnt}}
+    {% for key,value in cnt.items %}
+    {{key}} - {{value}}
+    <br>
+    {% endfor %}
     <div class="row">
       <div class="col-md-6" style="margin:1rem auto 0 auto;">
         <img src="{% static 'main.jpg' %}" alt="" class="img-fluid">
@@ -48,7 +56,7 @@
                 <datalist id="languages">
                   {% for i in arr %}
                   <option value="{{i}}">
-                  {%endfor %}
+                  {% endfor %}
                 </datalist>
 
               </div>
@@ -66,7 +74,42 @@
         </div>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-6" style="margin: 2rem auto;">
+        <span id="result" name="result" class="badge badge-warning" style="margin: 0 auto;font-size: 2rem;display: block;">Result</span>
+        <hr>
+        <p class="lead" style="text-align: center;font-size: 2rem;">Result Table</p>
+        <a href="{% url 'sortdata' %}" class="btn btn-primary">Sort Data In Descending Order</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Language</th>
+                <th scope="col">Vote</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key,value in cnt.items %}
+              <tr>
+                <th>{{forloop.counter}}</th>
+                <td>{{key}}</td>
+                <td>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: {{value}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{value}}</div>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6" style="margin: 2rem auto;">
         <span id="about" class="badge badge-info" style="margin: 0 auto;font-size: 2rem;display: block;">About</span>
@@ -76,7 +119,7 @@
     </div>
     <div class="row">
       <div class="col-md-6" style="margin: 2rem auto;">
-        <span id="instructions" class="badge badge-warning"
+        <span id="instructions" class="badge badge-danger"
           style="margin: 0 auto;font-size: 2rem;display: block;">Insturctions</span>
         <hr>
         <p class="lead" style="text-align: center;font-size: 2rem;">Select Your Language and See Results</p>

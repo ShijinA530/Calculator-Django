@@ -18,3 +18,12 @@ def getquerry(request):
         'cnt' : cnt
     }
     return render(request,'index.html',context=dict)
+
+def sortdata(req):
+    global cnt
+    cnt = dict(sorted(cnt.items(),key=lambda x:x[1],reverse=True))
+    d = {
+        'arr' : arr,
+        'cnt' : cnt
+    }
+    return render(req,'index.html',context=d)
